@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('./../database/db'); // Asegúrate de que la ruta y el nombre del archivo sean correctos
+const authenticateJWT = require('./../middleware/authenticateJWT'); // Asegúrate de que la ruta sea correcta
 
-// Obtener todos los proyectos
-router.get('/', async (req, res) => {
+// Obtener todos los proyectos (Protegido)
+router.get('/', authenticateJWT, async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM projects');
     res.json({
@@ -16,8 +17,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Agregar un nuevo proyecto
-router.post('/', async (req, res) => {
+// Agregar un nuevo proyecto (Protegido)
+router.post('/', authenticateJWT, async (req, res) => {
   const { title, description } = req.body;
 
   // Validación básica
@@ -41,8 +42,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Actualizar un proyecto
-router.put('/:id', async (req, res) => {
+// Actualizar un proyecto (Protegido)
+router.put('/:id', authenticateJWT, async (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
 
@@ -70,8 +71,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Eliminar un proyecto
-router.delete('/:id', async (req, res) => {
+// Eliminar un proyecto (Protegido)
+router.delete('/:id', authenticateJWT, async (req, res) => {
   const { id } = req.params;
 
   try {
