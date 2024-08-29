@@ -1,10 +1,8 @@
-// backend/routes/auth.js
-
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const db = require('../database/bd'); // Importa el archivo de configuración de PostgreSQL
+const db = require('../database/db'); // Asegúrate de que la ruta sea correcta
 
 // Login de usuario
 router.post('/login', async (req, res) => {
