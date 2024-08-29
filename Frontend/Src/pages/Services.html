@@ -1,77 +1,456 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Biodiversidad.cl</title>
-    <link rel="stylesheet" href="./../pages/services.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos - Biodiversidad.cl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-decoration: none; 
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .navbar {
+            background-color: #4caf50;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none; 
+        }
+
+        .navbar .logo a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6600;
+            text-decoration: none; 
+        }
+
+        .navbar .logo a:hover {
+    color: #ffffff; 
+    text-decoration: none; 
+}
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 15px;
+            text-decoration: none; 
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 4px;
+        }
+
+        .navbar .nav-links a:hover {
+            background-color: #60ca63;
+            color: #ffffff;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            max-width: 600px;
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffdd00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #ffdd00;
+        }
+
+        .footer-content {
+            text-align: center;
+            background-color: #000000;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .footer-content a {
+            color: #01a424;
+        }
+
+        .contact-social-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .contact-info {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #0ab916;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .social-icon.instagram {
+            color: #e4405f;
+        }
+
+        .social-icon.facebook {
+            color: #1877f2;
+        }
+
+        .social-icon:hover {
+            opacity: 0.8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .quantity-controls {
+            display: none; 
+        }
+
+        .add-to-cart-btn {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #ff9933;
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .cart-count {
+            background-color: #ff6600;
+            color: #fff;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .cart-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .cart-popup.show {
+            display: block;
+        }
+
+        .cart-popup h3 {
+            margin-bottom: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .cart-buttons .btn {
+            background-color: #ff9100;
+        }
+
+        .cart-buttons .btn:hover {
+            background-color: #ffc400;
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="logo">
-                <a href="/">Biodiversidad.cl</a>
-            </div>
-            <div class="menu">
-                <a href="/">Inicio</a>
-                <a href="./Services.html">Servicios</a>
-                <a href="./Experts.html">Expertos</a>
-                <a href="./Projects.html">Proyectos</a>
-                <a href="./blog.html">Blog</a>
-                <a href="./Contact.html">Contacto</a>
-                <a href="./login.html" class="register-link">Iniciar Sesión</a>
-                <a href="./register.html">Registrarse</a>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section class="services-section">
-            <div class="container">
-                <h1>Servicios Destacados</h1>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <img src="./assets/images/service1.jpg" alt="Servicio 1">
-                        <h3>Consultoría Ambiental</h3>
-                        <p>Desde $49.99</p>
-                        <button class="btn">Ver más</button>
-                    </div>
-                    <div class="service-card">
-                        <img src="./assets/images/service2.jpg" alt="Servicio 2">
-                        <h3>Capacitación en Sostenibilidad</h3>
-                        <p>Desde $59.99</p>
-                        <button class="btn">Ver más</button>
-                    </div>
-                    <div class="service-card">
-                        <img src="./assets/images/service3.jpg" alt="Servicio 3">
-                        <h3>Evaluación de Impacto Ambiental</h3>
-                        <p>Desde $39.99</p>
-                        <button class="btn">Ver más</button>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">Biodiversidad.cl</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="./Projects.html">Productos</a></li>
+            <li><a href="./Experts.html">Acerca de</a></li>
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./Contact.html">Contacto</a></li>
+            <li><a href="./Register.js">Registrarse</a></li>
+            <li><a href="./Login.js" class="register-link">Iniciar Sesión</a></li>
+            <li class="cart" id="cart">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+                <div class="cart-popup" id="cart-popup">
+                    <h3>Carrito</h3>
+                    <div id="cart-items"></div>
+                    <p class="cart-total">Total: $0.00</p>
+                    <div class="cart-buttons">
+                        <button class="btn" id="checkout-btn">Pagar</button>
+                        <button class="btn" id="clear-cart-btn">Borrar</button>
                     </div>
                 </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Nuestros Servicios</h1>
+        </div>
+    </header>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h5 class="section-title">Productos</h5>
+            <p class="section-description">
+                Encuentra el producto que necesitas...
+            </p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 1" class="project-image" />
+                    <h3>Producto 1</h3>
+                    <p>$10.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 1', 10.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 2" class="project-image" />
+                    <h3>Producto 2</h3>
+                    <p>$20.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 2', 20.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 3" class="project-image" />
+                    <h3>Producto 3</h3>
+                    <p>$30.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 3', 30.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 4" class="project-image" />
+                    <h3>Producto 4</h3>
+                    <p>$40.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 4', 40.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 5" class="project-image" />
+                    <h3>Producto 5</h3>
+                    <p>$50.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 5', 50.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 6" class="project-image" />
+                    <h3>Producto 6</h3>
+                    <p>$60.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 6', 60.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                  <img src="https://via.placeholder.com/150" alt="Producto 5" class="project-image" />
+                  <h3>Producto 5</h3>
+                  <p>$50.00</p>
+                  <button class="add-to-cart-btn" onclick="addToCart('Producto 5', 50.00)">Añadir al Carrito</button>
+              </div>
+              <div class="project-card">
+                  <img src="https://via.placeholder.com/150" alt="Producto 6" class="project-image" />
+                  <h3>Producto 6</h3>
+                  <p>$60.00</p>
+                  <button class="add-to-cart-btn" onclick="addToCart('Producto 6', 60.00)">Añadir al Carrito</button>
+              </div>
+              <div class="project-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 5" class="project-image" />
+                <h3>Producto 5</h3>
+                <p>$50.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Producto 5', 50.00)">Añadir al Carrito</button>
             </div>
-        </section>
-    </main>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/150" alt="Producto 6" class="project-image" />
+                <h3>Producto 6</h3>
+                <p>$60.00</p>
+                <button class="add-to-cart-btn" onclick="addToCart('Producto 6', 60.00)">Añadir al Carrito</button>
+            </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 7" class="project-image" />
+                    <h3>Producto 7</h3>
+                    <p>$70.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 7', 70.00)">Añadir al Carrito</button>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/150" alt="Producto 8" class="project-image" />
+                    <h3>Producto 8</h3>
+                    <p>$80.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('Producto 8', 80.00)">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-content">
-            <p>Dirección: Avenida Egaña 1638, B. Peñalolén, Santiago, Chile</p>
-            <p>Contacto: <a href="mailto:info@biodiversidad.cl">info@biodiversidad.cl</a></p>
-            <div class="social-icons">
-                <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-            </div>
-            <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-</body>
+      <div class="footer-content">
+          <p>Dirección: Avenida Egaña 1638, B. Peñalolén, Santiago, Chile</p>
+          <div class="contact-social-container">
+              <p class="contact-info">Contacto: <a href="mailto:info@biodiversidad.cl">info@biodiversidad.cl</a></p>
+              <div class="social-icons">
+                  <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">
+                      <i class="bi bi-instagram"></i>
+                  </a>
+                  <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">
+                      <i class="bi bi-facebook"></i>
+                  </a>
+              </div>
+          </div>  
+          <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
+      </div>
+  </footer>
 
+    <script>
+        const cartPopup = document.getElementById('cart-popup');
+        const cartIcon = document.getElementById('cart');
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.querySelector('.cart-total');
+
+        cartIcon.addEventListener('click', () => {
+            cartPopup.classList.toggle('show');
+        });
+
+        let cart = [];
+
+        function addToCart(name, price) {
+            const itemIndex = cart.findIndex(item => item.name === name);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCart();
+        }
+        document.getElementById('clear-cart-btn').addEventListener('click', () => {
+            cart = [];
+            updateCart();
+        });
+
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            alert('Proceso de pago');
+        });
+    </script>
+</body>
 </html>

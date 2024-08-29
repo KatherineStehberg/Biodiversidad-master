@@ -1,102 +1,430 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expertos - Biodiversidad.cl</title>
-    <link rel="stylesheet" href="./Experts.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
-</head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<body>
-    <!-- Navbar -->
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #333;
+      }
+
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .navbar {
+        background-color: #4caf50;
+        padding: 0.75rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .navbar .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ff6600;
+        text-decoration: none;
+      }
+
+      .navbar .logo a:hover {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        gap: 15px;
+        text-decoration: none;
+      }
+
+      .navbar .nav-links a {
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 4px;
+      }
+
+      .navbar .nav-links a:hover {
+        background-color: #60ca63;
+        color: #ffffff;
+      }
+
+      .header {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header .container {
+        max-width: 500px;
+      }
+
+      .section {
+        padding:  0%;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ffdd00;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #ffdd00;
+      }
+
+      .footer-content {
+        text-align: center;
+        background-color: #000000;
+        color: #fff;
+        padding: 1.5rem 2rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      .footer-content a {
+        color: #01a424;
+      }
+
+      .contact-social-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .contact-info {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .contact-info a {
+        color: #0ab916;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .social-icon {
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .social-icon.instagram {
+        color: #e4405f;
+      }
+
+      .social-icon.facebook {
+        color: #1877f2;
+      }
+
+      .social-icon:hover {
+        opacity: 0.8;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .project-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 10px;
+        text-align: center;
+        position: relative;
+      }
+
+      .project-card:hover {
+        transform: scale(1.05);
+      }
+
+      .project-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
+
+      .quantity-controls {
+        display: none;
+      }
+
+      .add-to-cart-btn {
+        background-color: #ff6600;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #ff9933;
+      }
+
+      .cart {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .cart-icon {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      .cart-count {
+        background-color: #ff6600;
+        color: #fff;
+        border-radius: 50%;
+        padding: 5px 10px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .cart-popup {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        width: 300px;
+        z-index: 1000;
+      }
+
+      .cart-popup.show {
+        display: block;
+      }
+
+      .cart-popup h3 {
+        margin-bottom: 10px;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .cart-item p {
+        margin: 0;
+      }
+
+      .cart-total {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .cart-buttons .btn {
+        background-color: #ff9100;
+      }
+
+      .cart-buttons .btn:hover {
+        background-color: #ffc400;
+      }
+
+      .mission-vision-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .mission-vision-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .mission-vision-card img {
+        max-width: 150px;
+        height: auto;
+      }
+
+      .mission-vision-card .content {
+        flex: 1;
+      }
+
+      .mission-text-right {
+        flex-direction: row;
+      }
+
+      .mission-text-left {
+        flex-direction: row-reverse;
+      }
+
+      .mission-vision-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .mission-vision-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="/">Biodiversidad.cl</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="./Services.html">Servicios</a></li>
-                <li><a href="./Experts.html">Expertos</a></li>
-                <li><a href="./Projects.html">Proyectos</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./Contact.html">Contacto</a></li>
-                <li><a href="./login.html" class="register-link">Iniciar Sesión</a></li>
-                <li><a href="./register.html">Registrarse</a></li>
-            </ul>
-        </div>
+      <div class="logo">
+        <a href="/">Biodiversidad.cl</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="./Projects.html">Productos</a></li>
+        <li><a href="./Services.html">Servicios</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./Contact.html">Contacto</a></li>
+        <li><a href="./Register.js">Registrarse</a></li>
+        <li><a href="./Login.js" class="register-link">Iniciar Sesión</a></li>
+      </ul>
     </nav>
 
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <h1 class="main-title">Nuestros Expertos</h1>
-            <p class="header-description">Conoce a los profesionales que lideran en el ámbito de la biodiversidad y la sostenibilidad.</p>
-        </div>
+      <div class="container">
+        <h1 class="main-title">Nuestros Expertos</h1>
+      </div>
     </header>
 
-    <!-- Experts Section -->
-    <section id="experts" class="section">
-        <div class="container">
-            <h2 class="section-title">Conoce a nuestros expertos</h2>
-            <p class="section-description">Nuestro equipo está compuesto por profesionales apasionados y altamente capacitados, dedicados a la conservación y biodiversidad.</p>
-            <div class="experts">
-                <div class="expert-card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen del Experto 1" class="expert-image">
-                    <div class="expert-content">
-                        <h3 class="expert-name">María González</h3>
-                        <p class="expert-title">Especialista en Conservación de la Biodiversidad</p>
-                        <p class="expert-description">Con más de 15 años de experiencia, María es una referente en la protección y recuperación de ecosistemas.</p>
-                        <a href="#" class="expert-link">Leer más...</a>
-                    </div>
-                </div>
-                <div class="expert-card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen del Experto 2" class="expert-image">
-                    <div class="expert-content">
-                        <h3 class="expert-name">Juan Pérez</h3>
-                        <p class="expert-title">Consultor en Sostenibilidad</p>
-                        <p class="expert-description">Juan asesora a organizaciones en la implementación de prácticas sostenibles, ayudando a reducir su huella ecológica.</p>
-                        <a href="#" class="expert-link">Leer más...</a>
-                    </div>
-                </div>
-                <div class="expert-card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen del Experto 3" class="expert-image">
-                    <div class="expert-content">
-                        <h3 class="expert-name">Ana Rodríguez</h3>
-                        <p class="expert-title">Educadora Ambiental</p>
-                        <p class="expert-description">Ana es una apasionada de la educación y concienciación ambiental, trabajando en comunidades locales para generar impacto.</p>
-                        <a href="#" class="expert-link">Leer más...</a>
-                    </div>
-                </div>
-                <!-- Puedes agregar más tarjetas de expertos aquí -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Conoce Más Sobre Nosotros</h2>
+        <p class="section-description">
+          En Biodiversidad.cl, estamos comprometidos con la conservación y la
+          biodiversidad. Conoce más sobre nuestra misión, visión y valores.
+        </p>
+        <div class="mission-vision-container">
+          <div class="mission-vision-card mission-text-right">
+            <img src="https://via.placeholder.com/150" alt="Misión" />
+            <div class="content">
+              <h2>Misión</h2>
+              <p>
+                Nuestra misión es preservar y proteger la biodiversidad para
+                garantizar un futuro sostenible para las generaciones venideras.
+              </p>
             </div>
+          </div>
+          <div class="mission-vision-card mission-text-left">
+            <img src="https://via.placeholder.com/150" alt="Visión" />
+            <div class="content">
+              <h2>Visión</h2>
+              <p>
+                Aspiramos a ser líderes en la conservación de la biodiversidad y
+                a inspirar a otros a unirse a nuestra causa.
+              </p>
+            </div>
+          </div>
+          <div class="mission-vision-card mission-text-right">
+            <img src="https://via.placeholder.com/150" alt="Valores" />
+            <div class="content">
+              <h2>Valores</h2>
+              <p>
+                Nos guiamos por la integridad, la pasión y el compromiso con la
+                naturaleza y la comunidad.
+              </p>
+            </div>
+          </div>
+          <div class="mission-vision-card mission-text-left">
+            <img src="https://via.placeholder.com/150" alt="Historia" />
+            <div class="content">
+              <h2>Historia</h2>
+              <p>
+                Conoce la historia detrás de nuestra organización y cómo hemos
+                evolucionado a lo largo de los años.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-links">
-                <ul>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="./Services.html">Servicios</a></li>
-                    <li><a href="./Experts.html">Expertos</a></li>
-                    <li><a href="./Projects.html">Proyectos</a></li>
-                    <li><a href="./blog.html">Blog</a></li>
-                    <li><a href="./Contact.html">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="social-media">
-                <p>Síguenos:</p>
-                <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.facebook.com" target="_blank" class="social-icon facebook"><i class="bi bi-facebook"></i></a>
-            </div>
-            <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
+    <footer>
+      <div class="footer-content">
+        <p>Dirección: Avenida Egaña 1638, B. Peñalolén, Santiago, Chile</p>
+        <div class="contact-social-container">
+          <p class="contact-info">
+            Contacto:
+            <a href="mailto:info@biodiversidad.cl">info@biodiversidad.cl</a>
+          </p>
+          <div class="social-icons">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              class="social-icon instagram"
+            >
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              class="social-icon facebook"
+            >
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
         </div>
+        <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
+      </div>
     </footer>
-
-</body>
-
+  </body>
 </html>
