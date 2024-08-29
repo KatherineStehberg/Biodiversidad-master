@@ -18,25 +18,70 @@ body {
 
 /* Contenedor principal */
 .container {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: auto;
     background-color: #ffffff;
-    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    overflow: hidden;
 }
 
-/* Título del formulario */
-h2 {
+/* Navegación secundaria */
+.secondary-nav {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 10px;
+}
+
+.secondary-nav li {
+    margin-left: 10px;
+}
+
+.secondary-nav .btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: none;
+}
+
+.light-purple {
+    background-color: #9370DB;
+}
+
+.dark-purple {
+    background-color: #4B0082;
+}
+
+.yellow {
+    background-color: #FFD700;
+}
+
+/* Formulario de login */
+.login-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
     font-size: 2rem;
     color: #009688;
     margin-bottom: 20px;
-    text-align: center;
 }
 
-/* Estilo de los campos de entrada */
-input[type="email"],
-input[type="password"] {
+.login-form .subtext {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
     width: 100%;
     padding: 12px 15px;
     margin-bottom: 15px;
@@ -45,8 +90,14 @@ input[type="password"] {
     font-size: 1rem;
 }
 
-/* Estilo del botón de inicio de sesión */
-.login-button {
+.login-form .remember-me {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.login-form .purple-button {
     width: 100%;
     padding: 12px;
     background-color: #009688;
@@ -59,23 +110,54 @@ input[type="password"] {
     transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+.login-form .purple-button:hover {
     background-color: #00796b;
 }
 
-/* Enlace para registrarse */
-.signup-link {
-    text-align: center;
+.instagram-signin {
     margin-top: 20px;
-    font-size: 0.9rem;
+    text-align: center;
 }
 
-.signup-link a {
+.instagram-button {
+    padding: 10px;
+    background-color: #E1306C;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instagram-button i {
+    margin-right: 10px;
+}
+
+.instagram-button:hover {
+    background-color: #C13584;
+}
+
+.forgot-password {
     color: #009688;
     text-decoration: none;
-    font-weight: bold;
 }
 
-.signup-link a:hover {
+.forgot-password:hover {
     text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.socialmedia-icons i {
+    margin: 0 10px;
+    font-size: 1.5rem;
 }
