@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const authenticateJWT = require('./../middleware/authenticateJWT'); // Asegúrate de que la ruta sea correcta
+const authenticateJWT = require('../middleware/authenticateJWT'); // Asegúrate de que la ruta sea correcta
 
 // Obtener todos los proyectos (Protegido)
 router.get('/', authenticateJWT, async (req, res) => {
