@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./../database/db'); // Asegúrate de que la ruta y el nombre del archivo sean correctos
+
 const authenticateJWT = require('./../middleware/authenticateJWT'); // Asegúrate de que la ruta sea correcta
 
 // Obtener todos los proyectos (Protegido)
