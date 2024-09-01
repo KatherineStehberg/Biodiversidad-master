@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import Projects from "./pages/Projects";
 import Navbar from "./components/Navbar"; // Si tienes una barra de navegación
 import Footer from "./components/Footer"; // Si tienes un footer
-import Products from "./Pages/Products"; //
+import Products from "./Pages/products"; //"; //
 function AppRoutes() {
   return (
     <Router>
