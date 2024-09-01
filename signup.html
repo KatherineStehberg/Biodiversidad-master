@@ -13,6 +13,12 @@
         <section class="signup-form">
             <h2>Regístrate</h2>
             <p class="subtext">Empieza tu prueba gratuita de 30 días</p>
+            
+            <!-- Success message -->
+            <div id="successMessage" class="alert alert-success" style="display:none;">
+                ¡Usted ha sido registrado exitosamente!
+            </div>
+            
             <form id="signupForm">
                 <div>
                     <label for="name">Nombre*</label>
@@ -34,6 +40,36 @@
             </div>
         </section>
     </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: name, email: email, password: password }),
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert('Error en el registro. Por favor, inténtelo de nuevo.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema con la solicitud. Por favor, inténtelo de nuevo más tarde.');
+            }
+        });
+    </script>
 </body>
 
 </html>
