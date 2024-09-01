@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const jwt = require('jsonwebtoken'); // Asegúrate de requerir jwt
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
+
 const projectsRouter = require('./routes/projects'); // Ruta para proyectos
 const usersRouter = require('./routes/users'); // Ruta para usuarios
 const servicesRouter = require('./routes/services'); // Ruta para servicios
