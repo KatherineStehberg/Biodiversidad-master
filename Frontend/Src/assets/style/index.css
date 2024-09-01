@@ -396,3 +396,19 @@ header {
 .social-icon:hover {
   opacity: 0.8;
 }
+
+.add-to-cart-button {
+  background-color: #28a745; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #218838; 
+}
