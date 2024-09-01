@@ -9,7 +9,7 @@ import Projects from './pages/Projects';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
-import Register from './pages/Register';
+import Register from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 
 const App = () => {
