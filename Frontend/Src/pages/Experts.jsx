@@ -19,3 +19,5 @@ const Experts = () => {
   );
 };
 
+export default Experts;
+
