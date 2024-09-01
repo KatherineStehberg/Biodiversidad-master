@@ -11,7 +11,7 @@ const projectsRouter = require('./routes/projects'); // Ruta para proyectos
 const usersRouter = require('./routes/users'); // Ruta para usuarios
 const servicesRouter = require('./routes/services'); // Ruta para servicios
 const productsRouter = require('./routes/products'); // Ruta para productos
-const authRouter = require('./routes/auth'); // Ruta para autenticación
+const authRouter = require('./Routes/auth'); // Ruta para autenticación
 
 const app = express();
 const PORT = process.env.PORT || 5000;
