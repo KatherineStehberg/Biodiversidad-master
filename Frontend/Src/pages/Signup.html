@@ -48,7 +48,7 @@
 
     <script>
         document.getElementById('signupForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
 
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
@@ -64,7 +64,6 @@
                 });
 
                 if (response.ok) {
-                    // Show success message
                     document.getElementById('successMessage').style.display = 'block';
                 } else {
                     alert('Error en el registro. Por favor, inténtelo de nuevo.');

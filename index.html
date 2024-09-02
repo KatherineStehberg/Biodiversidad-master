@@ -10,9 +10,6 @@
 </head>
 
 <body>
-    <div id="root"></div>
-    <script type="module" src="./Frontend/Src/main.jsx"></script>
-
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -24,7 +21,7 @@
             </div>
             <div class="user-actions">
                 <i class="bi bi-cart"></i>
-                <span id="cart-count">0</span>
+                <span id="cart-count-container">Carrito (<span id="cart-count">0</span>)</span>
             </div>
         </nav>
 
@@ -61,13 +58,13 @@
                     <div class="product-details">
                         <h3>Kit de jardinería</h3>
                         <p>Solo desde <span class="price">$9.99</span></p>
-                        <button class="add-to-cart-button">Agregar</button>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit de jardinería', 9.99)">Agregar</button>
                     </div>
                 </div>
                 <!-- Product 2 -->
                 <div class="featured-product">
                     <div class="product-image">
-                        <img src="/vite-project/src/imagen/basureros.jpg" alt="Product 2">
+                        <img src="/vite-project/src/imagen/basureros.jpg" alt="Kit Basureros">
                         <span class="badge new">Nuevo</span>
                     </div>
                     <div class="product-details">
@@ -77,15 +74,14 @@
                             <span class="price">$4.49</span>
                             <span class="old-price">$5.90</span>
                         </div>
-                        <button class="add-to-cart-button">Agregar</button>
-                        <div class="rating">
-                        </div>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit Basureros', 4.49)">Agregar</button>
+                        <div class="rating"></div>
                     </div>
                 </div>
                 <!-- Product 3 -->
                 <div class="featured-product">
                     <div class="product-image">
-                        <img src="/vite-project/src/imagen/colmena.jpg" alt="Product 3">
+                        <img src="/vite-project/src/imagen/colmena.jpg" alt="Colmena">
                         <span class="badge discount">90% Off</span>
                     </div>
                     <div class="product-details">
@@ -95,15 +91,14 @@
                             <span class="price">$3.99</span>
                             <span class="old-price">$4.90</span>
                         </div>
-                        <button class="add-to-cart-button">Agregar</button>
-                        <div class="rating">
-                        </div>
+                        <button class="add-to-cart-button" onclick="addToCart('Colmena', 3.99)">Agregar</button>
+                        <div class="rating"></div>
                     </div>
                 </div>
                 <!-- Product 4 -->
                 <div class="featured-product">
                     <div class="product-image">
-                        <img src="/vite-project/src/imagen/fertilizanteorganico.jpg" alt="Product 4">
+                        <img src="/vite-project/src/imagen/fertilizanteorganico.jpg" alt="Fertilizante">
                     </div>
                     <div class="product-details">
                         <h3>Fertilizante</h3>
@@ -111,15 +106,14 @@
                         <div class="price-container">
                             <span class="price">$5.90</span>
                         </div>
-                        <button class="add-to-cart-button">Agregar</button>
-                        <div class="rating">
-                        </div>
+                        <button class="add-to-cart-button" onclick="addToCart('Fertilizante', 5.90)">Agregar</button>
+                        <div class="rating"></div>
                     </div>
                 </div>
                 <!-- Product 5 -->
                 <div class="featured-product">
                     <div class="product-image">
-                        <img src="/vite-project/src/imagen/bebederodeaves.jpg" alt="Product 5">
+                        <img src="/vite-project/src/imagen/bebederodeaves.jpg" alt="Bebedor de Aves">
                     </div>
                     <div class="product-details">
                         <h3>Bebedor de Aves</h3>
@@ -127,15 +121,14 @@
                         <div class="price-container">
                             <span class="price">$6.99</span>
                         </div>
-                        <button class="add-to-cart-button">Agregar</button>
-                        <div class="rating">
-                        </div>
+                        <button class="add-to-cart-button" onclick="addToCart('Bebedor de Aves', 6.99)">Agregar</button>
+                        <div class="rating"></div>
                     </div>
                 </div>
                 <!-- Product 6 -->
                 <div class="featured-product">
                     <div class="product-image">
-                        <img src="/vite-project/src/imagen/Semillas.jpg" alt="Product 6">
+                        <img src="/vite-project/src/imagen/Semillas.jpg" alt="Semillas">
                     </div>
                     <div class="product-details">
                         <h3>Semillas</h3>
@@ -143,85 +136,84 @@
                         <div class="price-container">
                             <span class="price">$7.49</span>
                         </div>
-                        <div class="rating">
-                          <button class="add-to-cart-button">Agregar</button>
-                        </div>
+                        <button class="add-to-cart-button" onclick="addToCart('Semillas', 7.49)">Agregar</button>
+                        <div class="rating"></div>
                     </div>
                 </div>
             </div>
-          </section>
-          
-         <section id="featured-services" class="featured-services">
-          <h2>Servicios Destacados</h2>
-          <div class="featured-products-container">
-              <!-- Service 1 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/educacionambiental.jpg" alt="Service 1">
-                  </div>
-                  <div class="product-details">
-                      <h3>Educacion Ambiental</h3>
-                      <p>Desde <span class="price">$49.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-              <!-- Service 2 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/espaciosverdessostenibles.jpg" alt="Service 2">
-                  </div>
-                  <div class="product-details">
-                      <h3>Espacios Verdes</h3>
-                      <p>Desde <span class="price">$59.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-              <!-- Service 3 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/instalaciondeenergiarenovable.jpg" alt="Service 3">
-                  </div>
-                  <div class="product-details">
-                      <h3>Instalacion de energia renovable</h3>
-                      <p>Desde <span class="price">$69.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-              <!-- Service 4 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/manejodeplagas.jpg" alt="Service 4">
-                  </div>
-                  <div class="product-details">
-                      <h3>Manejo de plaga</h3>
-                      <p>Desde <span class="price">$79.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-              <!-- Service 5 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/monitoreodefaunayflora.jpg" alt="Service 5">
-                  </div>
-                  <div class="product-details">
-                      <h3>Monitoreo de Fauna</h3>
-                      <p>Desde <span class="price">$89.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-              <!-- Service 6 -->
-              <div class="featured-product">
-                  <div class="product-image">
-                      <img src="./vite-project/src/imagen/restauracionecologica.jpg" alt="Service 6">
-                  </div>
-                  <div class="product-details">
-                      <h3>Restauracion Ecologica</h3>
-                      <p>Desde <span class="price">$99.99</span></p>
-                  </div>
-                  <button class="add-to-cart-button">Agregar</button>
-              </div>
-          </div>
-      </section>
+        </section>
+        
+        <section id="featured-services" class="featured-services">
+            <h2>Servicios Destacados</h2>
+            <div class="featured-products-container">
+                <!-- Service 1 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/educacionambiental.jpg" alt="Educacion Ambiental">
+                    </div>
+                    <div class="product-details">
+                        <h3>Educacion Ambiental</h3>
+                        <p>Desde <span class="price">$49.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Educacion Ambiental', 49.99)">Agregar</button>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/espaciosverdessostenibles.jpg" alt="Espacios Verdes">
+                    </div>
+                    <div class="product-details">
+                        <h3>Espacios Verdes</h3>
+                        <p>Desde <span class="price">$59.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Espacios Verdes', 59.99)">Agregar</button>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/instalaciondeenergiarenovable.jpg" alt="Instalacion de energia renovable">
+                    </div>
+                    <div class="product-details">
+                        <h3>Instalacion de energia renovable</h3>
+                        <p>Desde <span class="price">$69.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Instalacion de energia renovable', 69.99)">Agregar</button>
+                    </div>
+                </div>
+                <!-- Service 4 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/manejodeplagas.jpg" alt="Manejo de plaga">
+                    </div>
+                    <div class="product-details">
+                        <h3>Manejo de plaga</h3>
+                        <p>Desde <span class="price">$79.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Manejo de plaga', 79.99)">Agregar</button>
+                    </div>
+                </div>
+                <!-- Service 5 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/monitoreodefaunayflora.jpg" alt="Monitoreo de Fauna">
+                    </div>
+                    <div class="product-details">
+                        <h3>Monitoreo de Fauna</h3>
+                        <p>Desde <span class="price">$89.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Monitoreo de Fauna', 89.99)">Agregar</button>
+                    </div>
+                </div>
+                <!-- Service 6 -->
+                <div class="featured-product">
+                    <div class="product-image">
+                        <img src="./vite-project/src/imagen/restauracionecologica.jpg" alt="Restauracion Ecologica">
+                    </div>
+                    <div class="product-details">
+                        <h3>Restauracion Ecologica</h3>
+                        <p>Desde <span class="price">$99.99</span></p>
+                        <button class="add-to-cart-button" onclick="addToCart('Restauracion Ecologica', 99.99)">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -241,11 +233,7 @@
             <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
         </div>
     </footer>
+
 </body>
 
-
-
-
 </html>
-
-
