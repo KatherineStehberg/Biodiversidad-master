@@ -7,32 +7,22 @@
     <title>Biodiversidad.cl - Conectando a los apasionados por el medio ambiente</title>
     <link rel="stylesheet" href="./Frontend/Src/assets/style/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./Frontend/Src/main.jsx"></script>
-  </body>
-</html>
+</head>
 
 <body>
-    <header>
-        
+    <div id="root"></div>
+    <script type="module" src="./Frontend/Src/main.jsx"></script>
 
+    <header>
         <nav class="navbar">
             <div class="logo">
                 <a href="/">Biodiversidad.cl</a>
             </div>
             <div class="search-bar">
-                <select>
-                    <option value="all">Todos</option>
-                    <option value="products">Productos</option>
-                    <option value="services">Servicios</option>
-                </select>
                 <input type="text" placeholder="¿Qué estás buscando?">
                 <button>Buscar</button>
             </div>
             <div class="user-actions">
-                
                 <i class="bi bi-cart"></i>
                 <span id="cart-count">0</span>
             </div>
@@ -57,11 +47,9 @@
                     <p>Explora nuestras ofertas y únete a un estilo de vida más consciente.</p>
                 </div>
             </div>
-          </div>
-      </div>
         </section>
 
-        <section class="featured-products">
+        <section id="featured-products" class="featured-products">
             <h2>Productos Destacados</h2>
             <div class="featured-products-container">
                 <!-- Product 1 -->
@@ -163,7 +151,7 @@
             </div>
           </section>
           
-      <section class="featured-services">
+         <section id="featured-services" class="featured-services">
           <h2>Servicios Destacados</h2>
           <div class="featured-products-container">
               <!-- Service 1 -->
@@ -254,6 +242,9 @@
         </div>
     </footer>
 </body>
+
+
+
 
 </html>
 
