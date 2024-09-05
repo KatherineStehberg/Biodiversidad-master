@@ -4,9 +4,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Projects from "./pages/Projects";
-import Navbar from "./components/Navbar"; // Si tienes una barra de navegación
-import Footer from "./components/Footer"; // Si tienes un footer
-import Products from "./Pages/products"; //"; //
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; 
+import Products from "./Pages/products";
 function AppRoutes() {
   return (
     <Router>

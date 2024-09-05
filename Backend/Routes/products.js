@@ -2,9 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../database/db'); // Asegúrate de que la ruta a la base de datos sea correcta
+const db = require('../database/db'); 
 
-// Obtener todos los productos
+
 router.get('/', async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM products');
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Obtener un producto por ID
+
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -36,7 +36,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Agregar un nuevo producto
 router.post('/', async (req, res) => {
   const { name, description, price, image, category_id } = req.body;
 
@@ -56,7 +55,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Actualizar un producto
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { name, description, price, image, category_id } = req.body;
@@ -80,7 +78,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Eliminar un producto
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
