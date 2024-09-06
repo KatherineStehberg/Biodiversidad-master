@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
-// Obtener todos los servicios
 router.get('/', async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM services');
@@ -16,7 +14,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Agregar un nuevo servicio (opcional)
 router.post('/', async (req, res) => {
   const { title, description, price, image } = req.body;
 

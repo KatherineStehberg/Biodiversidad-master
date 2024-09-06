@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./../database/db'); // Asegúrate de que este archivo exista y esté configurado para conectarse a tu base de datos
+const db = require('./../database/db'); 
 
-// Obtener todos los usuarios
 router.get('/', async (req, res) => {
   try {
-    const { rows } = await db.query('SELECT * FROM users'); // Reemplaza 'users' con el nombre real de tu tabla
+    const { rows } = await db.query('SELECT * FROM users');
     res.json({
       success: true,
       users: rows
@@ -16,11 +15,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Agregar un nuevo usuario
 router.post('/', async (req, res) => {
   const { name, email } = req.body;
 
-  // Validación básica
   if (!name || !email) {
     return res.status(400).json({ success: false, message: 'El nombre y el correo electrónico son obligatorios' });
   }
@@ -41,12 +38,10 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Actualizar un usuario existente
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { name, email } = req.body;
 
-  // Validación básica
   if (!name || !email) {
     return res.status(400).json({ success: false, message: 'El nombre y el correo electrónico son obligatorios' });
   }
@@ -70,7 +65,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Eliminar un usuario
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
