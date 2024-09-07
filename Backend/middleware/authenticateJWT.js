@@ -1,19 +1,22 @@
-// backend/middleware/authenticateJWT.js
-const jwt = require('jsonwebtoken');
+import { jwtCheck } from "../utils/jwt.js";
 
-const authenticateJWT = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-        return res.status(401).json({ message: 'Acceso denegado. No token provided.' });
+export const tokenVerify = (req, res, next) => {
+    const authorization = req.header('Authorization')
+
+    if (authorization === undefined) {
+        return res.status(401).json({ message: 'error al consultar token' })
+    }
+
+    const [bearer, token] = authorization.split(' ')
+    if (bearer !== 'Bearer') {
+        return res.status(401).json({ message: 'formato del token invalido' })
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.userId = decoded.userId;
-        next();
-    } catch (err) {
-        return res.status(403).json({ message: 'Token inválido o expirado' });
+        jwtCheck(token) && next ()
+    } catch (error) {
+        console.log(error.message)
+        res.status(401).json({ message: 'token invalido' })
     }
-};
+}
 
-module.exports = authenticateJWT;
