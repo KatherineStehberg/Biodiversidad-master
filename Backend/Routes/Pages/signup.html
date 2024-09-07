@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../Pages/signup.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style/SIgnup.css">
     <title>Registro - Biodiversidad.cl</title>
 </head>
 
 <body>
+    
     <div class="container">
+        <nav>
+            <div class="logo">
+                <a href="/">Biodiversidad.cl</a>
+            </div>
+        </nav>
         <section class="signup-form">
             <h2>Regístrate</h2>
             <p class="subtext">Empieza tu prueba gratuita de 30 días</p>
+            
+            <div id="successMessage" class="alert alert-success" style="display:none;">
+                ¡Usted ha sido registrado exitosamente!
+            </div>
+            
             <form id="signupForm">
                 <div>
                     <label for="name">Nombre*</label>
@@ -30,16 +40,41 @@
                 <p class="password-info">Debe tener al menos 8 caracteres.</p>
                 <button type="submit" class="signup-button">Crear cuenta</button>
             </form>
-            <div class="instagram-signup">
-                <button type="button" class="instagram-button">
-                    <i class="fab fa-instagram"></i> Registrarse con Instagram
-                </button>
+            <div class="login-link">
+                <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
             </div>
         </section>
-        <aside class="image-container">
-            <img src="https://famores.com/wp-content/uploads/2024/05/Pretty-woman-in-light-shirt-looking-at-front-1.png" alt="Imagen de Registro">
-        </aside>
     </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: name, email: email, password: password }),
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert('Error en el registro. Por favor, inténtelo de nuevo.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema con la solicitud. Por favor, inténtelo de nuevo más tarde.');
+            }
+        });
+    </script>
 </body>
 
 </html>
