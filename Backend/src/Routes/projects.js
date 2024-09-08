@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const authenticateJWT = require('../middleware/authenticateJWT'); // Asegúrate de que la ruta sea correcta
+const authenticateJWT = require('../middleware/authenticateJWT'); 
 
-// Obtener todos los proyectos (Protegido)
+
 router.get('/', authenticateJWT, async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM projects');
@@ -17,11 +17,11 @@ router.get('/', authenticateJWT, async (req, res) => {
   }
 });
 
-// Agregar un nuevo proyecto (Protegido)
+
 router.post('/', authenticateJWT, async (req, res) => {
   const { title, description } = req.body;
 
-  // Validación básica
+
   if (!title || !description) {
     return res.status(400).json({ success: false, message: 'El título y la descripción son obligatorios' });
   }
@@ -42,12 +42,12 @@ router.post('/', authenticateJWT, async (req, res) => {
   }
 });
 
-// Actualizar un proyecto (Protegido)
+
 router.put('/:id', authenticateJWT, async (req, res) => {
   const { id } = req.params;
   const { title, description } = req.body;
 
-  // Validación básica
+
   if (!title || !description) {
     return res.status(400).json({ success: false, message: 'El título y la descripción son obligatorios' });
   }
@@ -71,7 +71,7 @@ router.put('/:id', authenticateJWT, async (req, res) => {
   }
 });
 
-// Eliminar un proyecto (Protegido)
+
 router.delete('/:id', authenticateJWT, async (req, res) => {
   const { id } = req.params;
 

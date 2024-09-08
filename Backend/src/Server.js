@@ -3,25 +3,21 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
-// Load environment variables from .env file
 dotenv.config();
 
-// Import routes
-const projectsRouter = require('./routes/projects'); // Ruta para proyectos
-const usersRouter = require('./routes/users'); // Ruta para usuarios
-const servicesRouter = require('./routes/services'); // Ruta para servicios
-const productsRouter = require('./routes/products'); // Ruta para productos
-const authRouter = require('./routes/auth'); // Ruta para autenticación
+const projectsRouter = require('./routes/projects');
+const usersRouter = require('./routes/users'); 
+const servicesRouter = require('./routes/services'); 
+const productsRouter = require('./routes/products'); 
+const authRouter = require('./routes/auth'); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware para parsear JSON y datos URL-encoded
-app.use(cors()); // Configura CORS si necesario para tu caso específico
+app.use(cors()); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware para verificar JWT
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -38,25 +34,21 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-// Ruta raíz
 app.get('/', (req, res) => {
     res.send('¡Bienvenido al servidor backend de Biodiversidad!');
 });
 
-// Rutas con autenticación JWT
 app.use('/api/projects', authenticateJWT, projectsRouter);
 app.use('/api/users', authenticateJWT, usersRouter);
 app.use('/api/services', authenticateJWT, servicesRouter);
 app.use('/api/products', authenticateJWT, productsRouter);
-app.use('/api/auth', authRouter); // Ruta pública para autenticación
+app.use('/api/auth', authRouter); 
 
-// Middleware de manejo de errores
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');
 });
 
-// Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
 });

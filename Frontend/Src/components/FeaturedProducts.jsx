@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
               href="/Frontend/Src/pages/Productos.html"
               className="add-to-cart-button"
             >
-              Ir al productos
+              Ir a los productos
             </a>
           </div>
         </div>
@@ -42,7 +42,7 @@ const FeaturedProducts = () => {
               href="/Frontend/Src/pages/Productos.html"
               className="add-to-cart-button"
             >
-              Ir al productos
+              Ir a los productos
             </a>
           </div>
         </div>
@@ -62,7 +62,7 @@ const FeaturedProducts = () => {
               href="/Frontend/Src/pages/Productos.html"
               className="add-to-cart-button"
             >
-              Ir al productos
+              Ir a los productos
             </a>
           </div>
         </div>

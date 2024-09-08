@@ -10,10 +10,7 @@ const Navbar = () => {
         
         <input type="text" placeholder="¿Qué estás buscando?" />
       </div>
-      <div className="user-actions">
-        <i className="bi bi-cart"></i>
-        <span id="cart-count">0</span>
-      </div>
+     
     </nav>
   );
 };
