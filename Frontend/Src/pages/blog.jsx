@@ -32,12 +32,12 @@ const Blog = () => {
             <Link to="/">Biodiversidad.cl</Link>
           </div>
           <ul className="nav-links">
-            <li><Link to="./Productos.html">Productos</Link></li>
-            <li><Link to="/services">Servicios</Link></li>
-            <li><Link to="/experts">Acerca de</Link></li>
-            <li><Link to="/contact">Contacto</Link></li>
-            <li><Link to="/signup">Registrarse</Link></li>
-            <li><Link to="/login" className="register-link">Iniciar Sesión</Link></li>
+            <li><Link to="../pages/Productos.html">Productos</Link></li>
+            <li><Link to="../pages/Services.html">Servicios</Link></li>
+            <li><Link to="../pages/Quienessomos.html">Acerca de</Link></li>
+            <li><Link to="../pages/Contact.html">Contacto</Link></li>
+            <li><Link to="../pages/Signup.html">Registrarse</Link></li>
+            <li><Link to="../pages/Signup.html" className="register-link">Iniciar Sesión</Link></li>
           </ul>
         </nav>
       </header>
