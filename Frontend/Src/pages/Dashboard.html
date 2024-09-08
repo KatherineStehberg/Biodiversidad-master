@@ -88,6 +88,7 @@
         const itemsList = document.getElementById('itemsList');
         let items = [];
 
+        // Subir producto
         uploadForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -95,7 +96,7 @@
             const price = document.getElementById('price').value;
             const image = document.getElementById('image').files[0];
 
-        
+            // Crear un objeto de producto
             const reader = new FileReader();
   
         

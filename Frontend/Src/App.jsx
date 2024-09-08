@@ -1,23 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from './components/Register';
-import Login from './components/Login';
-import Products from './components/Products';
-import { UserContextProvider } from './context/UserContext';
+import Navbar from './components/Navbar';
+import Menu from './components/Menu';
+import SliderSection from './components/SliderSection';
+import FeaturedProducts from './components/FeaturedProducts';
+import FeaturedServices from './components/FeaturedServices';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router>
-      <UserContextProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/products" element={<Products />} />
-          {/* Añade más rutas según tus necesidades, elimina cualquier ruta de proyectos */}
-        </Routes>
-      </UserContextProvider>
-    </Router>
+    <div>
+      <header>
+        <Navbar />
+        <Menu />
+      </header>
+      <main>
+        <SliderSection />
+        <FeaturedProducts />
+        <FeaturedServices />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

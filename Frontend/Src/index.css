@@ -102,8 +102,7 @@ body {
   }
   
   .slider-section {
-    background: url("./vite-project/src/imagen/inicio.jpg") no-repeat center
-      center/cover;
+    background: url("./assets/img/inicio.jpg") no-repeat center center/cover;
     padding: 3rem 2rem;
     color: #ffffff;
     position: relative;
