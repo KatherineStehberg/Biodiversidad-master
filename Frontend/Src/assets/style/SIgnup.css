@@ -1,3 +1,4 @@
+/* Reinicia márgenes y rellenos para todos los elementos */
 * {
   margin: 0;
   padding: 0;
@@ -14,23 +15,58 @@ body {
   height: 100vh;
 }
 
-.container {
+header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.logo img {
+  height: 40px; /* Ajusta según el tamaño de tu logo */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 1rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav ul li a:hover {
+  color: #4caf50;
+}
+
+.signup-container {
   background-color: #ffffff;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
+  margin-top: 80px; /* Asegúrate de dejar espacio para el header fijo */
 }
 
-h2 {
+h1 {
   font-size: 2rem;
   color: #4caf50;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.subtext {
+p {
   font-size: 1rem;
   color: #777;
   margin-bottom: 20px;
@@ -48,13 +84,7 @@ input[type="password"] {
   font-size: 1rem;
 }
 
-.password-info {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 15px;
-}
-
-.signup-button {
+button {
   width: 100%;
   padding: 12px;
   background-color: #4caf50;
@@ -67,8 +97,8 @@ input[type="password"] {
   transition: background-color 0.3s ease;
 }
 
-.signup-button:hover {
-  background-color: #4caf50;
+button:hover {
+  background-color: #45a049; /* Un poco más oscuro para el hover */
 }
 
 /* Enlace para iniciar sesión */
@@ -85,6 +115,37 @@ input[type="password"] {
 }
 
 .login-link a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  display: inline;
+  margin: 0 0.5rem;
+}
+
+footer ul li a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
   text-decoration: underline;
 }
 

@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../assets/style/Signup.css'; // Asegúrate de tener un archivo de estilo para este componente
+import { Link, useNavigate } from 'react-router-dom';
+import '../assets/style/SIgnup.css'; 
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  // Manejar el registro del usuario
-  const handleSignup = async (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage('Las contraseñas no coinciden');
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:5000/api/auth/signup', {
@@ -19,72 +34,106 @@ const Signup = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
       });
 
       const data = await response.json();
 
       if (response.ok) {
+        setSuccessMessage('Registro exitoso. ¡Bienvenido!');
         navigate('/login'); // Redirige al login tras un registro exitoso
       } else {
-        setError(data.message || 'Error en el registro');
+        setErrorMessage(data.message || 'Error en el registro');
       }
     } catch (err) {
-      setError('Error en el registro. Inténtalo nuevamente.');
+      setErrorMessage('Error en el registro. Inténtalo nuevamente.');
     }
   };
 
   return (
-    <div className="container">
-      <nav>
+    <div>
+      <header>
         <div className="logo">
-          <a href="/">Biodiversidad.cl</a>
+          <Link to="/">
+            <img src="../assets/logo.png" alt=" Biodiversidad.cl" /> {/* Etiquetas de auto-cierre */}
+          </Link>
         </div>
-      </nav>
-      <section>
-        <div className="signup-form">
-          <h2>Regístrate</h2>
-          <form onSubmit={handleSignup}>
-            <div>
-              <label htmlFor="name">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Ingresa tu nombre"
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Correo Electrónico</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Ingresa tu correo electrónico"
-              />
-            </div>
-            <div>
-              <label htmlFor="password">Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-              />
-            </div>
-            <button type="submit" className="signup-button">
-              Registrarse
-            </button>
+        <nav>
+          <ul>
+            <li><Link to="/index.html">Inicio</Link></li>
+            <li><Link to="../pages/Experts.html">Sobre Nosotros</Link></li>
+            <li><Link to="../pages/Contact.html">Contacto</Link></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div className="signup-container">
+          <h1>Crear una Cuenta</h1>
+          <p>Únete a nuestra comunidad y colabora con los mejores expertos en medio ambiente.</p>
+
+          <form id="signup-form" onSubmit={handleSubmit}>
+            <label htmlFor="name">Nombre Completo</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="confirm-password">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+
+            <button type="submit">Registrarse</button>
           </form>
-          {error && <p className="error-message">{error}</p>}
+
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+
+          <p>¿Ya tienes una cuenta? <Link to="/login">Inicia Sesión</Link></p>
         </div>
-      </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2024 Biodiversidad.cl - Todos los derechos reservados</p>
+        <ul>
+          <li><Link to="/privacy">Política de Privacidad</Link></li>
+          <li><Link to="/terms">Términos y Condiciones</Link></li>
+        </ul>
+      </footer>
     </div>
   );
 };
