@@ -2,35 +2,36 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database/db');
 
+async function register(req, res) {
+    const { username, password, email, role_ide } = req.body;
 
-async function login(req, res) {
-  const { username, password } = req.body;
+try {
+    const userCheckQuery = 'SELECT * FROM users WHERE username = $1 OR email = $2';
+    const { rows: existingUser } = await db.query(userCheckQuery, [username, email]);
 
-  try {
-
-    const query = 'SELECT * FROM users WHERE username = $1';
-    const { rows } = await db.query(query, [username]);
-
-    if (rows.length === 0) {
-      return res.status(401).json({ message: 'Usuario no encontrado' });
+    if (existingUser.length > 0){
+        return res.status(400).json({ message: 'nombre o correo ya existe' });
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = rows[0];
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const query = 'INSERT INTO users (username, password, email, role_ide) VALUES ($1, $2, $3, $4) RETURNING id, username, email, role_id*';
+    const {rows} = await db.query(query, [username, hashedPassword, email, role_id]);
+    const newUser = rows[0];
 
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Contraseña incorrecta' });
-    }
+    const token = jwt.sing ({ userId: newUser.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    res.json({ token });
-  } catch (error) {
-    console.error('Error en el login:', error);
-    res.status(500).json({ error: 'Error en el login' });
-  }
+    res.json({
+        success: true,
+        message: 'Usuario registrado',
+        token,
+        redirect: '/Frontend/Src/pages/Dashboard.html'
+    })
+} catch (error) { 
+    console.error("Error en el registro", error.message);
+    res.status(500).json({ message: 'Error en el registro' });  
+}
 }
 
-module.exports = {
-  login,
+module.exports = { 
+    register, 
 };

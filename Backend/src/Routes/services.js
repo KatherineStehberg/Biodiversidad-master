@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 router.get('/', async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM services');
