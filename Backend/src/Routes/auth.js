@@ -1,13 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-
     const user = await User.findOne({ where: { email } });
 
     if (!user) {

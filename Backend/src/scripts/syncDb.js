@@ -3,7 +3,7 @@ const User = require('../models/user');
 
 const syncDb = async () => {
   try {
-    await sequelize.sync({ force: true }); // Elimina y recrea las tablas; usa { alter: true } para cambios incrementales
+    await sequelize.sync({ force: true });
     console.log('Base de datos sincronizada.');
   } catch (error) {
     console.error('Error al sincronizar la base de datos:', error);
