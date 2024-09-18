@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../assets/style/SIgnup.css'; 
+import '../assets/style/Signup.css'; // Ensure this CSS file exists
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -13,13 +13,14 @@ const Signup = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  // Handle form input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setErrorMessage('');
     setSuccessMessage('');
 
@@ -45,7 +46,7 @@ const Signup = () => {
 
       if (response.ok) {
         setSuccessMessage('Registro exitoso. ¡Bienvenido!');
-        navigate('/login'); // Redirige al login tras un registro exitoso
+        navigate('/login'); // Redirect to login after successful signup
       } else {
         setErrorMessage(data.message || 'Error en el registro');
       }
@@ -59,14 +60,14 @@ const Signup = () => {
       <header>
         <div className="logo">
           <Link to="/">
-            <img src="../assets/logo.png" alt=" Biodiversidad.cl" /> {/* Etiquetas de auto-cierre */}
+            <img src="../assets/logo.png" alt="Biodiversidad.cl" /> {/* Auto-closing tag */}
           </Link>
         </div>
         <nav>
           <ul>
-            <li><Link to="/index.html">Inicio</Link></li>
-            <li><Link to="../pages/Experts.html">Sobre Nosotros</Link></li>
-            <li><Link to="../pages/Contact.html">Contacto</Link></li>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/about">Sobre Nosotros</Link></li>
+            <li><Link to="/contact">Contacto</Link></li>
           </ul>
         </nav>
       </header>
@@ -85,6 +86,7 @@ const Signup = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              placeholder="Ingresa tu nombre"
             />
 
             <label htmlFor="email">Correo Electrónico</label>
@@ -95,6 +97,7 @@ const Signup = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              placeholder="Ingresa tu correo electrónico"
             />
 
             <label htmlFor="password">Contraseña</label>
@@ -105,6 +108,7 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
             />
 
             <label htmlFor="confirm-password">Confirmar Contraseña</label>
@@ -115,6 +119,7 @@ const Signup = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              placeholder="Confirma tu contraseña"
             />
 
             <button type="submit">Registrarse</button>

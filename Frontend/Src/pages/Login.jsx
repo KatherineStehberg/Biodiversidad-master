@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../assets/style/Login.css'
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import "../assets/style/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,13 +24,15 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
+        alert('¡Inicio de sesión exitoso!');
         localStorage.setItem('token', data.token);
-        navigate('/dashboard');
+        navigate('/Frontend/src/pages/Dashboard.jsx');
       } else {
-        setError(data.message || 'Error al iniciar sesión');
+        alert(data.message || 'Correo electrónico o contraseña incorrectos.');
       }
     } catch (error) {
-      setError('Hubo un problema con la solicitud');
+      console.error('Error al iniciar sesión:', error);
+      alert('Ocurrió un error, por favor intenta de nuevo.');
     }
   };
 
@@ -44,18 +47,17 @@ const Login = () => {
         <div className="login-form">
           <h2>Iniciar Sesión</h2>
           <p className="subtext">¡Bienvenido de nuevo! Por favor, ingresa tus datos</p>
-          {error && <p className="error">{error}</p>}
-          <form onSubmit={handleLogin}>
+          <form id="loginForm" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email"><span className="gray-text">Correo Electrónico</span></label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                required
-                placeholder="Ingresa tu correo electrónico"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Ingresa tu correo electrónico"
               />
             </div>
             <div>
@@ -64,10 +66,10 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
-                required
-                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
               />
             </div>
             <div className="remember-me">
@@ -82,11 +84,11 @@ const Login = () => {
       <footer>
         <h2>Todos los derechos reservados</h2>
         <div className="socialmedia-icons">
-          <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
-            <i className="fab fa-facebook"></i>
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <FontAwesomeIcon icon={faFacebook} />
           </a>
-          <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
-            <i className="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <FontAwesomeIcon icon={faInstagram} />
           </a>
         </div>
       </footer>

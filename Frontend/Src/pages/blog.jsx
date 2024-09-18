@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './assets/style/Blog.css'; // Asegúrate de que esta ruta sea correcta
+import './Blog.css';
 
 const Blog = () => {
   const [posts, setPosts] = useState([
@@ -8,20 +7,16 @@ const Blog = () => {
     { title: 'Título del Blog Post 2', description: 'Descripción breve del blog post 2.' },
     { title: 'Título del Blog Post 3', description: 'Descripción breve del blog post 3.' }
   ]);
-  const [formData, setFormData] = useState({ title: '', content: '' });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [newPostTitle, setNewPostTitle] = useState('');
+  const [newPostContent, setNewPostContent] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newPost = {
-      title: formData.title,
-      description: formData.content
-    };
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const newPost = { title: newPostTitle, description: newPostContent };
     setPosts([...posts, newPost]);
-    setFormData({ title: '', content: '' });
+    setNewPostTitle('');
+    setNewPostContent('');
   };
 
   return (
@@ -29,25 +24,25 @@ const Blog = () => {
       <header>
         <nav className="navbar">
           <div className="logo">
-            <Link to="/">Biodiversidad.cl</Link>
+            <a href="/">Biodiversidad.cl</a>
           </div>
           <ul className="nav-links">
-            <li><Link to="../pages/Productos.html">Productos</Link></li>
-            <li><Link to="../pages/Services.html">Servicios</Link></li>
-            <li><Link to="../pages/Quienessomos.html">Acerca de</Link></li>
-            <li><Link to="../pages/Contact.html">Contacto</Link></li>
-            <li><Link to="../pages/Signup.html">Registrarse</Link></li>
-            <li><Link to="../pages/Signup.html" className="register-link">Iniciar Sesión</Link></li>
+            <li><a href="/Frontend/Src/pages/Productos.html">Productos</a></li>
+            <li><a href="/Frontend/Src/pages/Services.html">Servicios</a></li>
+            <li><a href="/Frontend/Src/pages/Quienessomos.html">Acerca de</a></li>
+            <li><a href="/Frontend/Src/pages/Contact.html">Contacto</a></li>
+            <li><a href="/Frontend/Src/pages/Signup.html">Registrarse</a></li>
+            <li><a href="/Frontend/Src/pages/Login.html" className="register-link">Iniciar Sesión</a></li>
           </ul>
         </nav>
       </header>
 
       <div className="container main-content">
-        <div className="blog-posts" id="blog-posts">
+        <div className="blog-posts">
           {posts.map((post, index) => (
             <article className="blog-post" key={index}>
               <h2>{post.title}</h2>
-              <p>{post.description} <Link to="#">Leer más...</Link></p>
+              <p>{post.description}</p>
             </article>
           ))}
         </div>
@@ -56,15 +51,15 @@ const Blog = () => {
       <div className="container">
         <div className="submission-form">
           <h2>Envía tu Publicación</h2>
-          <form id="post-form" onSubmit={handleSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <div className="form-group">
               <label htmlFor="post-title">Título</label>
               <input
                 type="text"
                 id="post-title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
+                name="post-title"
+                value={newPostTitle}
+                onChange={(e) => setNewPostTitle(e.target.value)}
                 required
               />
             </div>
@@ -72,9 +67,9 @@ const Blog = () => {
               <label htmlFor="post-content">Contenido</label>
               <textarea
                 id="post-content"
-                name="content"
-                value={formData.content}
-                onChange={handleChange}
+                name="post-content"
+                value={newPostContent}
+                onChange={(e) => setNewPostContent(e.target.value)}
                 required
               ></textarea>
             </div>
@@ -91,24 +86,7 @@ const Blog = () => {
               Contacto:
               <a href="mailto:info@biodiversidad.cl">info@biodiversidad.cl</a>
             </p>
-            <div className="social-icons">
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon instagram"
-              >
-                <i className="bi bi-instagram"></i>
-              </a>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon facebook"
-              >
-                <i className="bi bi-facebook"></i>
-              </a>
-            </div>
+            <div className="social-icons"></div>
           </div>
           <p>&copy; 2024 Biodiversidad.cl. Todos los derechos reservados.</p>
         </div>

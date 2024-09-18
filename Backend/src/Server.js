@@ -17,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -33,20 +34,29 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
+
 app.get('/', (req, res) => {
     res.send('¡Bienvenido al servidor backend de Biodiversidad!');
 });
+
 
 app.use('/api/projects', authenticateJWT, projectsRouter);
 app.use('/api/users', authenticateJWT, usersRouter);
 app.use('/api/services', authenticateJWT, servicesRouter);
 app.use('/api/products', authenticateJWT, productsRouter);
-app.use('/api/auth', authRouter); 
+app.use('/api/auth', authRouter);
+
+
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Ruta no encontrada' });
+});
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');
 });
+
 
 sequelize.sync({ alter: true })
   .then(() => {
