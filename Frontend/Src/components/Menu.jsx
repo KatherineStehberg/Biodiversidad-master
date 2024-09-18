@@ -3,13 +3,13 @@ import React from 'react';
 const Menu = () => {
   return (
     <nav className="menu">
-      <a href="/Frontend/Src/pages/Productos.jsx">Productos</a>
-      <a href="/Frontend/Src/pages/Servicios.jsx">Servicios</a>
-      <a href="/Frontend/Src/pages/About.jsx">Acerca de</a>
-      <a href="/Frontend/Src/pages/Blog.jsx">Blog</a>
-      <a href="/Frontend/Src/pages/Contact.jsx">Contacto</a>
-      <a href="/Frontend/Src/pages/Signup.jsx">Registrarse</a>
-      <a href="/Frontend/Src/pages/Login.jsx" className="register-link">Iniciar Sesión</a>
+      <a href="/Frontend/Src/pages/Productos.html">Productos</a>
+      <a href="/Frontend/Src/pages/Services.html">Servicios</a>
+      <a href="/Frontend/Src/pages/Quienessomos.html">Acerca de</a>
+      <a href="/Frontend/Src/pages/Blog.html">Blog</a>
+      <a href="/Frontend/Src/pages/Contact.html">Contacto</a>
+      <a href="/Frontend/Src/pages/Signup.html">Registrarse</a>
+      <a href="/Frontend/Src/pages/Login.html" className="register-link">Iniciar Sesión</a>
     </nav>
   );
 };
